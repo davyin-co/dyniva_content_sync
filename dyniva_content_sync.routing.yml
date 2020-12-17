@@ -1,0 +1,14 @@
+dyniva_content_sync.export_form:
+  path: '/manage/content-sync/export'
+  defaults:
+    _form: '\Drupal\dyniva_content_sync\Form\ExportForm'
+    _title: 'Export Content'
+  requirements:
+    _permission: 'dyniva content sync export'
+dyniva_content_sync.import_form:
+  path: '/manage/content-sync/import'
+  defaults:
+    _form: '\Drupal\dyniva_content_sync\Form\ImportForm'
+    _title: 'Import Content'
+  requirements:
+    _permission: 'dyniva content sync import'

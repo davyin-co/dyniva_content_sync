@@ -1,0 +1,8 @@
+name: Dyniva Content Sync
+type: module
+description: 'Content sync function'
+core: 8.x
+package: Dyniva
+dependencies:
+  - replication
+version: 8.x-1.0

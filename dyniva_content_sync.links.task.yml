@@ -1,0 +1,10 @@
+dyniva_content_sync.export:
+  route_name: dyniva_content_sync.export_form
+  base_route: dyniva_content_sync.export_form
+  title: Export
+  weight: 1
+dyniva_content_sync.import:
+  route_name: dyniva_content_sync.import_form
+  base_route: dyniva_content_sync.export_form
+  title: Import
+  weight: 2

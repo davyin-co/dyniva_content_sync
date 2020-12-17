@@ -1,0 +1,8 @@
+dyniva content sync export:
+  title: 'Export content'
+  description: 'Allow to access the export content page'
+  restrict access: true
+dyniva content sync import:
+  title: 'Import content'
+  description: 'Allow to access the import content page'
+  restrict access: true

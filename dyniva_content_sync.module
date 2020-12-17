@@ -1,0 +1,51 @@
+<?php
+
+use Drupal\Core\Entity\FieldableEntityInterface;
+
+/**
+ * @file
+ * Contains dyniva_content_sync.module..
+ */
+
+/**
+ * Implements hook_entity_insert().
+ * 
+ * @param Drupal\Core\Entity\EntityInterface $entity
+ */
+function dyniva_content_sync_entity_presave(Drupal\Core\Entity\EntityInterface $entity) {
+  if (\Drupal::routeMatch()->getRouteName() == 'dyniva_content_sync.import_form' && $entity instanceof FieldableEntityInterface) {
+    $current_active = \Drupal::service('workspace.manager')->getActiveWorkspace();
+    if ($entity->hasField('panelizer')) {
+      
+      foreach ($entity->get('panelizer') as $item) {
+        /**
+         * @var Panelizer $panelizer
+         */
+        $panelizer = \Drupal::service('panelizer');
+        $value = $item->getValue();
+        $view_mode = $value['view_mode'];
+        $panels_display = $panelizer->getPanelsDisplay($entity, $view_mode);
+        $panels_display_value = $entity->panelizer->panels_display;
+        
+        $regions = $panels_display->getRegionAssignments();
+        foreach ($regions as $region => $blocks) {
+          if ($blocks) {
+            foreach ($blocks as $block_id => $block){
+              /**
+               * @var BlockContentBlock $block
+               */
+              if ($block->getBaseId() == 'block_content') {
+                $uuid = $block->getDerivativeId();
+                $item = \Drupal::service('multiversion.entity_index.uuid')->useWorkspace($current_active->id())->get($uuid);
+                if($item){
+                  $panels_display_value['blocks'][$block_id]['vid'] = $item['revision_id'];
+                  $entity->panelizer->panels_display = $panels_display_value;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

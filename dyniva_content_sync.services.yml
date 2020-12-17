@@ -1,0 +1,22 @@
+services:
+  dyniva_content_sync.bulkdocs_factory:
+    class: Drupal\dyniva_content_sync\BulkDocsFactory
+    arguments: ['@workspace.manager', '@multiversion.entity_index.uuid', '@multiversion.entity_index.rev', '@entity_type.manager', '@lock', '@logger.factory', '@state', '@config.factory']
+  dyniva_content_sync.normalizer.content_entity:
+    class: Drupal\dyniva_content_sync\Normalizer\ContentEntityNormalizer
+    arguments: ['@entity.manager', '@multiversion.entity_index.factory', '@language_manager', '@replication.users_mapping', '@module_handler', '@plugin.manager.entity_reference_selection', '@event_dispatcher']
+    tags:
+      - { name: normalizer, priority: 41 }
+  dyniva_content_sync.normalizer.entity_reference_item:
+    class: Drupal\dyniva_content_sync\Normalizer\EntityReferenceItemNormalizer
+    tags:
+      - { name: normalizer, priority: 41 }
+  dyniva_content_sync.normalizer.bulk_docs:
+    class: Drupal\dyniva_content_sync\Normalizer\BulkDocsNormalizer
+    tags:
+      - { name: normalizer, priority: 51 }
+  dyniva_content_sync.normalizer.menu_link_content:
+    class: Drupal\dyniva_content_sync\Normalizer\MenuLinkContentNormalizer
+    arguments: ['@entity.manager', '@multiversion.entity_index.factory', '@language_manager', '@replication.users_mapping', '@module_handler', '@plugin.manager.entity_reference_selection', '@event_dispatcher']
+    tags:
+      - { name: normalizer, priority: 61 }

@@ -1,0 +1,11 @@
+
+{
+    "name": "davyin/dyniva_content_sync",
+    "description": "admin theme for drupal.",
+    "type": "drupal-custom-module",
+    "license": "GPL-2.0-or-later",
+    "homepage": "https://github.com/davyin-co/dyniva_content_sync",
+    "require": {
+        "drupal/core": "^8.6.0"
+    }
+}
