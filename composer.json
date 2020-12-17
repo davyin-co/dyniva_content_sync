@@ -1,7 +1,7 @@
 
 {
     "name": "davyin/dyniva_content_sync",
-    "description": "admin theme for drupal.",
+    "description": "dyniva_content_sync for drupal 8 +.",
     "type": "drupal-custom-module",
     "license": "GPL-2.0-or-later",
     "homepage": "https://github.com/davyin-co/dyniva_content_sync",
