@@ -200,7 +200,7 @@ class ContentEntityNormalizer extends ContentEntityNormalizerBase {
             $translations[$key] = $this->denormalizeTranslation($translation, $entity_id, $entity_uuid, $entity_type_id, $bundle_key, $entity_type, $id_key, $context, $rev, $revisions);
       }
       // Configure the language, then do denormalization.
-      elseif (is_array($translation) && $this->moduleHandler->moduleExists('language')) {
+      elseif (is_array($translation) && \Drupal::moduleHandler()->moduleExists('language')) {
         $language = ConfigurableLanguage::createFromLangcode($key);
         $language->save();
         $context['language'] = $key;
